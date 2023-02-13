@@ -1,0 +1,18 @@
+telegram:
+  token: 123
+  channel: 456
+
+email:
+  host:
+  port:
+  user:
+  templates_path: "../../assets/email-templates"
+
+red_panda:
+  host:
+  password:
+  token:
+
+service:
+  port: 8080
+  address: 127.0.0.1
