@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  redpanda:
+    image: "docker.io/vectorized/redpanda:latest"
+    ports:
+      - "9092:9092"
