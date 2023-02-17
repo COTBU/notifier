@@ -2,7 +2,7 @@ FROM golang:alpine AS build_base
 RUN set -ex && apk update && apk add -q  \
   git unzip build-base autoconf libtool
 
-WORKDIR $GOPATH/src/SOTBI/telegram-notifier
+WORKDIR $GOPATH/src/COTBU/notifier
 
 COPY . .
 

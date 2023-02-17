@@ -3,15 +3,15 @@ telegram:
   channel: 456
 
 email:
-  host:
-  port:
-  user:
+  host: localhost
+  port: 4444
+  user: user@user.usr
+  pass: passpasspass
   templates_path: "../../assets/email-templates"
 
-red_panda:
+broker:
   host:
-  password:
-  token:
+  port:
 
 service:
   port: 8080

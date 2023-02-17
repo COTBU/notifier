@@ -1,10 +1,10 @@
 package sender
 
 import (
-	"SOTBI/notifier/config"
-	"SOTBI/notifier/model"
-	"SOTBI/notifier/service/sender/email"
-	"SOTBI/notifier/service/sender/telegram"
+	"github.com/COTBU/notifier/config"
+	"github.com/COTBU/notifier/pkg/model"
+	"github.com/COTBU/notifier/service/sender/email"
+	"github.com/COTBU/notifier/service/sender/telegram"
 )
 
 type Sender struct {

@@ -15,7 +15,7 @@ import (
 
 	"github.com/getsentry/sentry-go"
 
-	"SOTBI/notifier/config"
+	"github.com/COTBU/notifier/config"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 )

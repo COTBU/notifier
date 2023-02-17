@@ -3,14 +3,13 @@ package main
 import (
 	"flag"
 
-	"github.com/gin-gonic/gin"
-
-	"SOTBI/notifier/config"
+	"github.com/COTBU/notifier/config"
+	"github.com/COTBU/notifier/service"
 )
 
 func main() {
 	path := ""
-	flag.StringVar(&path, "config", "config/notifier.yaml", "config path")
+	flag.StringVar(&path, "config", "config/config.yaml", "config path")
 	flag.Parse()
 
 	cfg, err := config.Get(path)
@@ -18,17 +17,22 @@ func main() {
 		panic(err)
 	}
 
-	//srv, err := server.New(cfg)
-	//if err != nil {
+	srv := service.New(cfg)
+
+	//engine := gin.Default()
+	////
+	////notifyGroup := engine.Group("notifier")
+	////notifyGroup.POST("", srv.NewEvent)
+	//
+	//if err := engine.Run("localhost:" + cfg.Service.Port); err != nil {
 	//	panic(err)
 	//}
 
-	engine := gin.Default()
-	//
-	//notifyGroup := engine.Group("notifier")
-	//notifyGroup.POST("", srv.NewEvent)
+	if err := srv.RunConsumer(); err != nil {
+		panic(err)
+	}
 
-	if err := engine.Run("localhost:" + cfg.Service.Port); err != nil {
+	if err := srv.CloseClient(); err != nil {
 		panic(err)
 	}
 }

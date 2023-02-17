@@ -1,9 +1,10 @@
 package telegram
 
 import (
-	"SOTBI/notifier/config"
 	"github.com/nikoksr/notify"
 	"github.com/nikoksr/notify/service/telegram"
+
+	"github.com/COTBU/notifier/config"
 )
 
 func NewClient(appConfig *config.Config) (*telegram.Telegram, error) {

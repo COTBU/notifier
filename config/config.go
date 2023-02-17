@@ -16,11 +16,12 @@ type Config struct {
 		Port          uint32 `yaml:"port"`
 		User          string `yaml:"user"`
 		TemplatesPath string `yaml:"templates_path"`
-		Password      string `yaml:"-"`
+		Password      string `yaml:"pass"`
 	} `yaml:"email"`
-	RedPanda struct {
+	Broker struct {
 		Host string `yaml:"host"`
-	} `yaml:"red_panda"`
+		Port uint32 `yaml:"port"`
+	} `yaml:"broker"`
 	Service struct {
 		Port    string `yaml:"port"`
 		Address string `yaml:"address"`
