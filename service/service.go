@@ -30,8 +30,7 @@ func New(appConfig *config.Config) *Service {
 	saramaConfig := sarama.NewConfig()
 	saramaConfig.ClientID = "notifier"
 	saramaConfig.Consumer.Return.Errors = true
-	saramaConfig.Consumer.Offsets.Initial = sarama.OffsetOldest
-	saramaConfig.Producer.Return.Successes = true
+	saramaConfig.Consumer.Offsets.Initial = sarama.OffsetNewest
 
 	client, err := sarama.NewClient([]string{
 		fmt.Sprintf(
