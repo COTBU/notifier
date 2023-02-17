@@ -1,4 +1,4 @@
-module SOTBI/notifier
+module COTBU/notifier
 
 go 1.19
 
