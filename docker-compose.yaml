@@ -10,8 +10,7 @@ services:
     hostname: notifier
     image: "ghcr.io/cotbu/notifier:${tag}"
     volumes:
-      - /root/email-templates:/root/email-templates
-      - /root/ini:/app/config
+      - /root/config:/app/config
     depends_on:
       redpanda:
         condition: service_healthy
