@@ -5,3 +5,16 @@ services:
     image: "docker.io/vectorized/redpanda:latest"
     ports:
       - "9092:9092"
+
+  notifier:
+    hostname: notifier
+    image: "ghcr.io/cotbu/notifier:${tag}"
+    volumes:
+      - /root/email-templates:/root/email-templates
+      - /root/ini:/app/config
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    networks:
+      - energy
+    restart: unless-stopped
