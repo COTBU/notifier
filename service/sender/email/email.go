@@ -13,8 +13,6 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/getsentry/sentry-go"
-
 	"github.com/COTBU/notifier/config"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
@@ -24,7 +22,7 @@ type EmailClient interface {
 	Credentials() *Credentials
 	SetDestination([]string) EmailClient
 	SetSubject(string) EmailClient
-	SendRich(string, any) error
+	SendRich(string) error
 }
 
 // Credentials struct.
@@ -80,6 +78,7 @@ func (c *client) newClient() (err error) {
 	if err != nil {
 		return err
 	}
+
 	if runtime.GOOS == "linux" {
 		// TLS config
 		host, _, _ := net.SplitHostPort(servername)
@@ -124,22 +123,9 @@ type TemplateData struct {
 }
 
 // SendRich - отправляет письмо с разметкой.
-// Принимает на вход строку шаблона в виде MD и данные для шаблона.
-// Данные шаблона обогащаются данными об IP адресе сервера.
-// Возвращает ошибку в случае если невозможно распарсить шаблон или отправить письмо.
-func (c *client) SendRich(templateBody string, data any) (err error) {
-	emailData := TemplateData{data, c.config.Service.Address}
-	c.credentials.Body, err = c.execTemplate(emailData, templateBody)
-	if err != nil {
-		err = fmt.Errorf(
-			"error parsing template: %w,\nemailData: %+v,\ntemplate: %s",
-			err,
-			emailData,
-			templateBody,
-		)
-		sentry.CaptureException(err)
-		return err
-	}
+// Принимает на вход готовое тело письма
+func (c *client) SendRich(body string) (err error) {
+	c.credentials.Body = body
 
 	return c.send()
 }
