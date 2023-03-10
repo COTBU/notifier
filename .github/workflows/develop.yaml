@@ -1,7 +1,12 @@
-name: Develop Deploy
+name: De Deploy
 on:
   push:
     branches: [ develop ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag or PR number to deploy'
+        required: false
 jobs:
   docker-notifier:
     runs-on: ubuntu-latest
@@ -35,11 +40,11 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: true
           tags: |
-            ghcr.io/cotbu/notifier:develop
+            ghcr.io/cotbu/notifier:${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}
       - name: Webhook to reload docker
         uses: distributhor/workflow-webhook@v1
         env:
-          webhook_url: ${{ secrets.WEBHOOK_URL }}/reload-backend?tag=develop&image=notifier
+          webhook_url: ${{ secrets.WEBHOOK_URL }}/reload-backend?tag=${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}&image=notifier
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
 #      - name: Send telegram message after develop push
 #        uses: appleboy/telegram-action@master
