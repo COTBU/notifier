@@ -1,4 +1,4 @@
-name: De Deploy
+name: Dev Deploy
 on:
   push:
     branches: [ develop ]
@@ -30,17 +30,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build & push server docker
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: build/Dockerfile
-          platforms: linux/amd64
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-          push: true
-          tags: |
-            ghcr.io/cotbu/notifier:${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}
+#      - name: Build & push server docker
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          file: Dockerfile
+#          platforms: linux/amd64
+#          cache-from: type=local,src=/tmp/.buildx-cache
+#          cache-to: type=local,dest=/tmp/.buildx-cache
+#          push: true
+#          tags: |
+#            ghcr.io/cotbu/notifier:${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}
       - name: Webhook to reload docker
         uses: distributhor/workflow-webhook@v1
         env:
