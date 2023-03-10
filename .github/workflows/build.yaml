@@ -42,9 +42,9 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: true
           tags: |
-            ghcr.io/cotbu/notifier:${{ github.event.pull_request.number || github.event.inputs.tag || "latest" }}
+            ghcr.io/cotbu/notifier:${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}
 
-#      - name: Send telegram message after building image from PR
+#      - name: Send telegram message after building NOTIFIER image
 #        uses: appleboy/telegram-action@master
 #        with:
 #          to: ${{ secrets.TELEGRAM_CHANNEL }}
