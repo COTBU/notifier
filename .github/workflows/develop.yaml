@@ -3,7 +3,7 @@ on:
   push:
     branches: [ develop ]
 jobs:
-  docker-sotbisrv:
+  docker-notifier:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

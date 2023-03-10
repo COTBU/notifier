@@ -10,7 +10,7 @@ on:
         description: 'Tag or PR number to deploy'
         required: true
 jobs:
-  docker-sotbisrv:
+  docker-notifier:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
