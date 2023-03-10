@@ -8,7 +8,7 @@ on:
     inputs:
       tag:
         description: 'Tag or PR number to deploy'
-        required: true
+        required: false
 jobs:
   docker-notifier:
     runs-on: ubuntu-latest
