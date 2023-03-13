@@ -44,7 +44,7 @@ jobs:
       - name: Webhook to reload docker
         uses: distributhor/workflow-webhook@v1
         env:
-          webhook_url: ${{ secrets.WEBHOOK_URL }}/reload-backend?tag=${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}&image=notifier
+          webhook_url: ${{ vars.WEBHOOK_URL }}/reload-backend?tag=${{ github.event.pull_request.number || github.event.inputs.tag || 'latest' }}&image=notifier
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
 #      - name: Send telegram message after develop push
 #        uses: appleboy/telegram-action@master
