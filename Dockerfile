@@ -15,4 +15,4 @@ FROM alpine:latest
 
 WORKDIR /root/
 COPY --from=build_base notifer .
-ENTRYPOINT ["./notifer","-config", "/config/notifier.yaml"]
+ENTRYPOINT ["./notifer","-config", "config/notifier.yaml"]
